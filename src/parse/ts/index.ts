@@ -345,7 +345,7 @@ function getDocgenTypeHelper(
           type,
         ),
         returns: getFunctionReturns(
-          checker.typeToTypeNode(type, type?.symbol?.valueDeclaration),
+          checker.typeToTypeNode(type, type?.symbol?.valueDeclaration, undefined),
           checker,
           parentIds,
           type,

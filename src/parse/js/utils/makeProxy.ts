@@ -5,7 +5,7 @@ function makeProxy(target: { [name: string]: any }, meta: any = {}): any {
     return makeProxy(value, Object.assign({}, rawMeta, meta));
   }
   return new Proxy(target, {
-    get: (obj, prop: string | number) => {
+    get: (obj, prop: any) => {
       if (prop === '__isProxy') return true;
       if (prop === '__getRaw') return () => target;
       if (prop === '__getMeta') return () => meta;
