@@ -5,6 +5,7 @@ package-lock.json
 yarn.lock
 deploy-space/packages
 deploy-space/.env
+*/temp/
 
 # IDE
 .vscode
@@ -100,3 +101,5 @@ typings/
 # codealike
 codealike.json
 .node
+
+__coverage__.txt*

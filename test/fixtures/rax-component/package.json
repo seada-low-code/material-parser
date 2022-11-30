@@ -41,7 +41,6 @@
   },
   "devDependencies": {
     "@alib/build-scripts": "^0.1.0",
-    "@alife/build-plugin-lowcode": "^1.0.17",
     "@iceworks/spec": "^1.0.0",
     "@types/rax": "^1.0.0",
     "build-plugin-component": "^1.0.0",

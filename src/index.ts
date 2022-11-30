@@ -17,6 +17,7 @@ export { default as validate } from './validate';
 export { default as schema } from './validate/schema.json';
 
 export * from './types';
+export * from './core/schema/types';
 
 export default async function (options: IMaterializeOptions): Promise<ComponentMeta[]> {
   const { accesser = 'local', dslType } = options;
