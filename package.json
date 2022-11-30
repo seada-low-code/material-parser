@@ -1,6 +1,6 @@
 {
   "name": "@seada/lowcode-material-parser",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "material parser for Ali lowCode engine, seada customization",
   "main": "lib/index.js",
   "files": [
