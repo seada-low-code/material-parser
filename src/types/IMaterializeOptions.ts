@@ -13,6 +13,10 @@ export interface IMaterializeCommonOptions {
    * 当前dsl类型，可选值包括'react' | 'rax'
    */
   dslType?: DSLType;
+  /**
+   * 完成后删除目录
+   */
+  debug?: boolean;
 }
 
 /**

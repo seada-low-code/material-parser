@@ -72,7 +72,6 @@ export default async function scan(
       }
     }
   }
-
   log('model', model);
   return model;
 }

@@ -53,7 +53,8 @@ export default async (args: IParseArgs) => {
     }
   } else if (args.accesser === 'online') {
     // ts
-    const entryPath = useEntry ? mainFileAbsolutePath : typingsFileAbsolutePath;
+    // const entryPath = useEntry ? mainFileAbsolutePath : typingsFileAbsolutePath;
+    const entryPath = typingsFileAbsolutePath || mainFileAbsolutePath;
     if (entryPath && isTSLike(entryPath)) {
       await syncTypeModules(args);
       await install(args);

@@ -17,10 +17,10 @@ export { default as validate } from './validate';
 export { default as schema } from './validate/schema.json';
 
 export * from './types';
-export * from './core/schema/types';
+export { ComponentMeta };
 
 export default async function (options: IMaterializeOptions): Promise<ComponentMeta[]> {
-  const { accesser = 'local', dslType } = options;
+  const { accesser = 'local', dslType, debug = false } = options;
 
   let { entry = '' } = options;
   const internalOptions: IInternalMaterializeOptions = {
@@ -64,7 +64,7 @@ export default async function (options: IMaterializeOptions): Promise<ComponentM
     moduleDir,
   });
   const result = await generate(scanedModel, parsedModel, internalOptions);
-  if (workDir && accesser === 'online') {
+  if (workDir && accesser === 'online' && !debug) {
     await remove(workDir);
   }
   return result;
