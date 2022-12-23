@@ -59,7 +59,7 @@ export default async (args: IParseArgs) => {
       await syncTypeModules(args);
       await install(args);
       await installTypeDTS(args);
-      await installPeerAndDevDeps(args);
+      // await installPeerAndDevDeps(args);
       return parseTS(entryPath, args);
     }
     // js

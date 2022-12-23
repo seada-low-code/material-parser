@@ -544,8 +544,13 @@ export default function parseTS(filePath: string, args: IParseArgs): ComponentDo
         if (!sym.valueDeclaration) {
           continue;
         }
-        const info = parser.getComponentInfo(sym, sourceFile);
-        if (info === null) {
+        let info;
+        try {
+          info = parser.getComponentInfo(sym, sourceFile);
+        } catch (e) {
+          console.error(e);
+        }
+        if (!info) {
           continue;
         }
         const exportName = sym.meta && sym.meta.exportName;
