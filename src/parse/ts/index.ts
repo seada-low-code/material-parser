@@ -120,7 +120,7 @@ function getDocgenTypeHelper(
   if (isRequired !== undefined) {
     required = isRequired;
   } else {
-    required = !(type.flags & SymbolFlags.Optional) || isRequired;
+    required = !(type?.flags & SymbolFlags.Optional) || isRequired;
   }
 
   function makeResult(typeInfo: Json) {
@@ -248,7 +248,7 @@ function getDocgenTypeHelper(
       name: 'object', // checker.typeToString(type),
     });
   }
-  if (type.symbol) {
+  if (type?.symbol) {
     const symbolName = getSymbolName(type.symbol);
     if (symbolName) {
       const matches = pattern.exec(symbolName);
@@ -260,41 +260,41 @@ function getDocgenTypeHelper(
     }
   }
 
-  if (type.flags & TypeFlags.Number) {
+  if (type?.flags & TypeFlags.Number) {
     return makeResult({
       name: 'number',
     });
-  } else if (type.flags & TypeFlags.String) {
+  } else if (type?.flags & TypeFlags.String) {
     return makeResult({
       name: 'string',
     });
-  } else if (type.flags & TypeFlags.NumberLiteral) {
+  } else if (type?.flags & TypeFlags.NumberLiteral) {
     return makeResult({
       name: 'literal',
       // @ts-ignore
       value: type.value,
     });
-  } else if (type.flags & TypeFlags.Literal) {
+  } else if (type?.flags & TypeFlags.Literal) {
     return makeResult({
       name: 'literal',
       value: checker.typeToString(type),
     });
-  } else if (type.symbol?.flags & SymbolFlags.Enum) {
+  } else if (type?.symbol?.flags & SymbolFlags.Enum) {
     return makeResult({
       name: 'union',
       // @ts-ignore
       value: type.types.map((t) => t.value),
     });
     // @ts-ignore
-  } else if (type.flags & TypeFlags.DisjointDomains) {
+  } else if (type?.flags & TypeFlags.DisjointDomains) {
     return makeResult({
       name: checker.typeToString(type),
     });
-  } else if (type.flags & TypeFlags.Any) {
+  } else if (type?.flags & TypeFlags.Any) {
     return makeResult({
       name: 'any',
     });
-  } else if (type.flags & TypeFlags.Union && !isComplexType(type)) {
+  } else if (type?.flags & TypeFlags.Union && !isComplexType(type)) {
     return makeResult({
       name: 'union',
       // @ts-ignore
@@ -304,7 +304,7 @@ function getDocgenTypeHelper(
     return makeResult({
       name: getSymbolName(type?.symbol || type?.aliasSymbol),
     });
-  } else if (type.flags & (TypeFlags.Object | TypeFlags.Intersection)) {
+  } else if (type?.flags & (TypeFlags.Object | TypeFlags.Intersection)) {
     if (isTuple(type)) {
       try {
         const props = getShape(type);
