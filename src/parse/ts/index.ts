@@ -141,10 +141,10 @@ function getDocgenTypeHelper(
   function getShapeFromArray(symbolArr: ts.Symbol[], _type: ts.Type) {
     const shape: Array<{
       key:
-        | {
-            name: string;
-          }
-        | string;
+      | {
+        name: string;
+      }
+      | string;
       value: any;
     }> = symbolArr.map((prop) => {
       const propType = checker.getTypeOfSymbolAtLocation(
