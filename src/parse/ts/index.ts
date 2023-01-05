@@ -1,5 +1,5 @@
 import * as path from 'path';
-import { Parser, ComponentDoc } from 'react-docgen-typescript';
+import { Parser, ComponentDoc, PropItem } from 'react-docgen-typescript';
 import ts, { SymbolFlags, TypeFlags, SyntaxKind } from 'typescript';
 import { isEmpty, isEqual } from 'lodash';
 import { existsSync, readFileSync } from 'fs-extra';
@@ -514,7 +514,21 @@ export default function parseTS(filePath: string, args: IParseArgs): ComponentDo
   generateDTS(args);
   const program = ts.createProgram([filePath], options);
 
-  const parser = new MyParser(program, {});
+  const parser = new MyParser(program, {
+    propFilter: (prop: PropItem, component: any) => {
+      // skip react FC props
+      if (prop?.declarations?.length > 0) {
+        const hasPropAdditionalDescription = prop.declarations.find((declaration) => {
+          // return !declaration.fileName.includes('node_modules');
+          return !/@types\/react/.test(declaration.fileName);
+        });
+
+        return Boolean(hasPropAdditionalDescription);
+      }
+
+      return true;
+    },
+  });
 
   const checker = program.getTypeChecker();
 
