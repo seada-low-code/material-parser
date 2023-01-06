@@ -71,6 +71,8 @@ const blacklistNames = [
   'contextType',
   'Provider',
   'Consumer',
+  // todo
+  'Tree',
 ];
 
 const blacklistPatterns = [
